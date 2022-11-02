@@ -1,7 +1,6 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TestDatabase {
     static void create() {
@@ -31,6 +30,27 @@ public class TestDatabase {
             throw new RuntimeException(e);
         }
     }
+
+    static Set<Utils.Pair> get() {
+        try {
+            try (Connection c = DriverManager.getConnection("jdbc:sqlite:test.db")) {
+                String sql = "SELECT * FROM PRODUCT";
+                Statement stmt = c.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                Set<Utils.Pair> items = new HashSet<>();
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    int price = rs.getInt("price");
+                    items.add(new Utils.Pair(name, price));
+                }
+                stmt.close();
+                return items;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     static void clear() throws SQLException {
         try (Statement statement = DriverManager.getConnection("jdbc:sqlite:test.db").createStatement()) {
