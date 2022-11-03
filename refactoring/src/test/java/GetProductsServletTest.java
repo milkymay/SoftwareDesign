@@ -53,6 +53,7 @@ public class GetProductsServletTest {
     @AfterAll
     static void drop() throws Exception {
         TestDatabase.drop();
+        server.stop();
     }
 
 }

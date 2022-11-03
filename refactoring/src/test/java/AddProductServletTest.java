@@ -78,5 +78,6 @@ public class AddProductServletTest {
     @AfterAll
     static void drop() throws Exception {
         TestDatabase.drop();
+        server.stop();
     }
 }

@@ -87,6 +87,7 @@ public class QueryServletTest {
     @AfterAll
     static void drop() throws Exception {
         TestDatabase.drop();
+        server.stop();
     }
 }
 
