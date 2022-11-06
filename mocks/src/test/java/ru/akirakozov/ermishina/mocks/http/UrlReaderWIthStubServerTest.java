@@ -1,4 +1,4 @@
-package ru.akirakozov.mockexample.http;
+package ru.akirakozov.ermishina.mocks.http;
 
 import com.xebialabs.restito.server.StubServer;
 import org.glassfish.grizzly.http.Method;
@@ -6,7 +6,8 @@ import org.glassfish.grizzly.http.util.HttpStatus;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.UncheckedIOException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
@@ -29,20 +30,31 @@ public class UrlReaderWIthStubServerTest {
                     .match(method(Method.GET), startsWithUri("/ping"))
                     .then(stringContent("pong"));
 
-            String result = urlReader.readAsText("http://localhost:" + PORT + "/ping");
+            String result = null;
+            try {
+                result = urlReader.readAsText("http://localhost:" + PORT + "/ping");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            Assert.assertEquals("pong\n", result);
+            Assert.assertEquals("pong", result);
         });
     }
 
-    @Test(expected = UncheckedIOException.class)
+    @Test
     public void readAsTextWithNotFoundError() {
         withStubServer(PORT, s -> {
             whenHttp(s)
                     .match(method(Method.GET), startsWithUri("/ping"))
                     .then(status(HttpStatus.NOT_FOUND_404));
 
-            urlReader.readAsText("http://localhost:" + PORT + "/ping");
+            try {
+                urlReader.readAsText("http://localhost:" + PORT + "/ping");
+            } catch (IOException e) {
+                Assert.assertEquals(e.getClass(), FileNotFoundException.class);
+                return;
+            }
+            Assert.fail();
         });
     }
 

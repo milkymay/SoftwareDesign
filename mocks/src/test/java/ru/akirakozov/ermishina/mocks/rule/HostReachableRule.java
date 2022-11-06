@@ -1,4 +1,4 @@
-package ru.akirakozov.mockexample.rule;
+package ru.akirakozov.ermishina.mocks.rule;
 
 import org.junit.Assume;
 import org.junit.rules.TestRule;
@@ -22,7 +22,7 @@ public class HostReachableRule implements TestRule {
     }
 
     private static boolean checkHost(String host) {
-        return nativePing(host) || nativePing6(host);
+        return nativePing(host);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class HostReachableRule implements TestRule {
         }
 
         @Override
-        public void evaluate() throws Throwable {
+        public void evaluate() {
             Assume.assumeTrue("Skipped, because following host " +
                     "is not available at the moment: " + host, false);
         }
@@ -55,10 +55,6 @@ public class HostReachableRule implements TestRule {
 
     private static boolean nativePing(String host) {
         return nativePingImpl("ping", host);
-    }
-
-    private static boolean nativePing6(String host) {
-        return nativePingImpl("ping6", host);
     }
 
     private static boolean nativePingImpl(String cmd, String host) {
