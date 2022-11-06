@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * @author akirakozov
  */
-@HostReachableRule.HostReachable(StockClientIntegrationTest.HOST)
-public class StockClientIntegrationTest {
+@HostReachableRule.HostReachable(TwitterClientIntegrationTest.HOST)
+public class TwitterClientIntegrationTest {
     public static final String HOST = "api.twitter.com";
 
     @Test

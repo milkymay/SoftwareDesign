@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 /**
  * @author akirakozov
  */
-public class StockManagerTest {
+public class TwitterManagerTest {
 
     private TwitterManager stockManager;
 

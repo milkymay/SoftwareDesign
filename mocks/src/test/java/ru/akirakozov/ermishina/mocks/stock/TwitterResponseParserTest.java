@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author akirakozov
  */
-public class StockResponseParserTest {
+public class TwitterResponseParserTest {
     private final static String testResponse = """
             {"data":[{"end":"2022-10-30T15:00:00.000Z","start":"2022-10-30T14:28:16.000Z","tweet_count":88},
             {"end":"2022-10-30T16:00:00.000Z","start":"2022-10-30T15:00:00.000Z","tweet_count":187},
