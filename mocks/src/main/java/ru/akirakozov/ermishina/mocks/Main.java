@@ -8,8 +8,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Main {
-
-
     public static void main(String[] args) {
         String hashtag = "comedy";
         int timeSpan = 10;
@@ -19,7 +17,7 @@ public class Main {
                 " for the last " + timeSpan + " hours is: " + info);
     }
 
-    private static List<Long> getTwitterStats(String hashtag, int timeSpan) {
+    public static List<Long> getTwitterStats(String hashtag, int timeSpan) {
         TwitterClient client = new TwitterClient("api.twitter.com");
         TwitterManager manager = new TwitterManager(client);
 
