@@ -1,44 +1,89 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<head>
-    <title>Add question</title>
-</head>
-<body>
 
-<h3>Select products</h3>
-<form method="GET" action="/filter-products">
-    <select th:name="filter">
-        <option value="all">all</option>
-        <option value="max">max</option>
-        <option value="min">min</option>
-    </select>
-    <input type="submit" value="filter">
-</form>
+<head>
+    <title>ToDo</title>
+</head>
+
+<body>
+<h1>ToDo</h1>
+
+<h3>Lists</h3>
 
 <table>
-    <th:block th:each="product : ${products}">
-    <tr>
-        <td th:text="${product.getId()}"/>
-        <td th:text="${product.getName()}"/>
-        <td th:text="${product.getPrice()}"/>
-    </tr>
+    <th:block th:each="taskList : ${taskLists}">
+        <tr>
+            <td th:text="${taskList.getId()}"></td>
+            <td th:text="${taskList.toString()}"></td>
+            <td>
+                <form th:action="@{delete-list}" method="post">
+                    <input type="hidden" name="taskListId" th:value="${taskList.id}"/>
+                    <input type="submit" value="🗑️" class="btn btn-danger" />
+                </form>
+            </td>
+        </tr>
+        <table style=margin-left:40px;>
+            <th:block th:each="task : ${taskList.tasks}">
+                <tr>
+                    <td th:text="${task.toString()}"></td>
+                    <td th:with="condition=${task.isActive()}">
+                        <form th:action="@{mark-task}" th:if="${condition}" method="post">
+                            <input type="hidden" name="taskId" th:value="${task.id}"/>
+                            <input type="hidden" name="listId" th:value="${task.listId}"/>
+                            <input type="submit" value="✔️" class="btn btn-danger" />
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{delete-task}" method="post">
+                            <input type="hidden" name="taskId" th:value="${task.id}"/>
+                            <input type="hidden" name="listId" th:value="${task.listId}"/>
+                            <input type="submit" value="🗑️" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
     </th:block>
 </table>
 
-<h3>Add new products</h3>
-<form th:object="${product}" method="POST" action="/add-product">
+<h3>Add new list</h3>
+<form th:object="${taskList}" method="POST" action="/add-list">
     <table>
         <tr>
             <td><label>Name:</label></td>
-            <td><input type="text" th:field="*{name}"/></td>
-        </tr>
-        <tr>
-            <td><label>Price:</label></td>
-            <td><input type="text" th:field="*{price}"/></td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{name}"/>
+                </label>
+            </td>
         </tr>
     </table>
 
-    <input type="submit" value="add">
+    <input type="submit" value="Add list">
+</form>
+
+<h3>Add new task</h3>
+<form th:object="${task}" method="POST" action="/add-task">
+    <table>
+        <tr>
+            <td><label>List ID:</label></td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{listId}"/>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Description:</label></td>
+            <td>
+                <label>
+                    <input type="text" th:field="*{name}"/>
+                </label>
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Add task">
 </form>
 
 </body>

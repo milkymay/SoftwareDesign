@@ -1,18 +1,18 @@
-package ru.akirakozov.sd.mvc.config;
+package ru.akirakozov.config;
 
+import org.springframework.context.annotation.Configuration;
+import ru.akirakozov.dao.TaskDao;
+import ru.akirakozov.dao.TaskJdbcDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.akirakozov.sd.mvc.dao.ProductJdbcDao;
 
 import javax.sql.DataSource;
 
-/**
- * @author akirakozov
- */
+//@Configuration
 public class JdbcDaoContextConfiguration {
     @Bean
-    public ProductJdbcDao productJdbcDao(DataSource dataSource) {
-        return new ProductJdbcDao(dataSource);
+    public TaskDao taskDao(DataSource dataSource) {
+        return new TaskJdbcDao(dataSource);
     }
 
     @Bean
