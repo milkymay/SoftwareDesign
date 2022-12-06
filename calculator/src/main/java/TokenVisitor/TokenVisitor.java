@@ -1,11 +1,11 @@
 package TokenVisitor;
 
-import Token.Brace;
+import Token.BraceToken;
 import Token.NumberToken;
-import Token.Operation;
+import Token.OperationToken;
 
 public interface TokenVisitor {
     void visit(NumberToken token);
-    void visit(Brace token);
-    void visit(Operation token);
+    void visit(BraceToken token);
+    void visit(OperationToken token);
 }
