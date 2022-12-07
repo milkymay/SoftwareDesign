@@ -18,7 +18,7 @@ public class OperationToken implements Token {
 
     @Override
     public String toString() {
-        return " " + operation + " ";
+        return "OT(\"" + operation + "\")";
     }
 
     public int getPriority() {

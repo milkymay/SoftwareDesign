@@ -20,6 +20,7 @@ public class BraceToken implements Token {
 
     @Override
     public String toString() {
-        return Character.toString(bracket);
+
+        return "BT(\"" + bracket + "\")";
     }
 }

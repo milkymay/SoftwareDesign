@@ -16,6 +16,6 @@ public class NumberToken implements Token {
 
     @Override
     public String toString() {
-        return Long.toString(number);
+        return "NT(\"" + number + "\")";
     }
 }
