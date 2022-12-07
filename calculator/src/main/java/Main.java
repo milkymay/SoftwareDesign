@@ -5,18 +5,27 @@ import TokenVisitor.ParserVisitor;
 import TokenVisitor.PrintVisitor;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
-        final Tokenizer tokenizer = new Tokenizer(System.in);
-        final List<Token> tokens;
+    public static void main(String[] args) throws IOException {
+        final String input;
         try {
-            tokens = tokenizer.tokenize();
-        } catch (IllegalStateException | IOException e) {
+            input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
+        long output = generateOutput(input);
+        System.out.println(output);
+    }
+
+    static long generateOutput(String input) throws IOException {
+        final Tokenizer tokenizer = new Tokenizer(input);
+        final List<Token> tokens;
+        tokens = tokenizer.tokenize();
+
         final ParserVisitor parserVisitor = new ParserVisitor();
         for (Token token : tokens) {
             token.accept(parserVisitor);
@@ -31,6 +40,6 @@ public class Main {
         for (Token token : rpn) {
             token.accept(calcVisitor);
         }
-        System.out.println(calcVisitor.getResult());
+        return calcVisitor.getResult();
     }
 }

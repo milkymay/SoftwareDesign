@@ -7,9 +7,6 @@ import Token.Token;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 public class PrintVisitor implements TokenVisitor {
     private final PrintWriter writer;
