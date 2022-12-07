@@ -23,6 +23,7 @@ public class PrintVisitor implements TokenVisitor {
     }
 
     public void print() {
+        writer.write('\n');
         writer.flush();
     }
 

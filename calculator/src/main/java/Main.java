@@ -1,5 +1,6 @@
 import Token.Token;
 import Token.Tokenizer;
+import TokenVisitor.CalcVisitor;
 import TokenVisitor.ParserVisitor;
 import TokenVisitor.PrintVisitor;
 
@@ -26,6 +27,10 @@ public class Main {
             token.accept(printVisitor);
         }
         printVisitor.print();
-
+        final CalcVisitor calcVisitor = new CalcVisitor();
+        for (Token token : rpn) {
+            token.accept(calcVisitor);
+        }
+        System.out.println(calcVisitor.getResult());
     }
 }

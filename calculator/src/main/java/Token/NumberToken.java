@@ -9,6 +9,10 @@ public class NumberToken implements Token {
         this.number = Long.parseLong(stringNumber);
     }
 
+    public long getNumber() {
+        return number;
+    }
+
     @Override
     public void accept(TokenVisitor visitor) {
         visitor.visit(this);

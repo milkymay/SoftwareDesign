@@ -24,4 +24,14 @@ public class OperationToken implements Token {
     public int getPriority() {
         return List.of('*', '/').contains(operation) ? 1 : 2;
     }
+
+    public long count(long left, long right) {
+        return switch (this.operation) {
+            case '+' -> left + right;
+            case '-' -> left - right;
+            case '*' -> left * right;
+            case '/' -> left / right;
+            default -> throw new IllegalStateException(this.operation + " is not a correct operation sign");
+        };
+    }
 }
