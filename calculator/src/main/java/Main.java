@@ -1,5 +1,6 @@
 import Token.Token;
 import Token.Tokenizer;
+import TokenVisitor.ParserVisitor;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,8 +15,14 @@ public class Main {
             System.out.println(e.getMessage());
             return;
         }
+        final ParserVisitor parserVisitor = new ParserVisitor();
         for (Token token : tokens) {
-            System.out.print(token.toString() + " ");
+            token.accept(parserVisitor);
         }
+        final List<Token> rpn = parserVisitor.getTokens();
+        for (Token token : rpn) {
+            System.out.print(token + " ");
+        }
+
     }
 }

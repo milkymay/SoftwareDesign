@@ -9,6 +9,10 @@ public class BraceToken implements Token {
         this.bracket = bracket;
     }
 
+    public boolean isOpenBracket() {
+        return (bracket == '(');
+    }
+
     @Override
     public void accept(TokenVisitor visitor) {
         visitor.visit(this);

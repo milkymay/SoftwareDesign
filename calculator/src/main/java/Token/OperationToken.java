@@ -2,6 +2,8 @@ package Token;
 
 import TokenVisitor.TokenVisitor;
 
+import java.util.List;
+
 public class OperationToken implements Token {
     private final char operation;
 
@@ -17,5 +19,9 @@ public class OperationToken implements Token {
     @Override
     public String toString() {
         return " " + operation + " ";
+    }
+
+    public int getPriority() {
+        return List.of('*', '/').contains(operation) ? 1 : 2;
     }
 }
