@@ -1,11 +1,23 @@
 package draw;
 
-public interface DrawingApi {
-    long getDrawingAreaWidth();
+public abstract class DrawingApi {
+    private final int width;
+    private final int height;
 
-    long getDrawingAreaHeight();
+    protected DrawingApi(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
-    void drawCircle(/*TODO*/);
+    public long getDrawingAreaWidth() {
+        return width;
+    }
 
-    void drawLine(/*TODO*/);
+    public long getDrawingAreaHeight() {
+        return height;
+    }
+
+    public abstract void drawCircle(double x, double y, double r);
+
+    public abstract void drawLine(double x1, double y1, double x2, double y2);
 }
