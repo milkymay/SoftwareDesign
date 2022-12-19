@@ -26,6 +26,7 @@ public class StatTest {
     public void empty() {
         assertTrue(eventsStats.getAllEventStatistic().isEmpty());
         assertEquals(0, eventsStats.getEventStatisticByName("name"), delta);
+
         eventsStats.printStatistic();
         final String output = out.toString().trim();
         assertEquals("", output);
