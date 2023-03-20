@@ -2,7 +2,7 @@ package Actors;
 
 import API.FakeAPI;
 import Search.Response;
-import Search.SearchResponder;
+import Search.SearchResponse;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -51,7 +51,7 @@ public class ParentActor extends AbstractActor {
 
         for (Future<Object> future : futures) {
             try {
-                SearchResponder data = (SearchResponder) Await.result(future, timeout.duration());
+                SearchResponse data = (SearchResponse) Await.result(future, timeout.duration());
                 String result = String.join(" ", data.getResponses());
                 responses.put(data.getApiName(), result);
             } catch (InterruptedException | TimeoutException ignored) {

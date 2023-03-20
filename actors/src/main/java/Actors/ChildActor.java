@@ -2,7 +2,7 @@ package Actors;
 
 import API.FakeAPI;
 import Search.Response;
-import Search.SearchResponder;
+import Search.SearchResponse;
 import akka.actor.AbstractActor;
 
 public class ChildActor extends AbstractActor {
@@ -23,7 +23,7 @@ public class ChildActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
                 .match(Response.class, x -> sender().tell(
-                        new SearchResponder(fakeAPI.getName(), fakeAPI.requestTop(x.getText(), responseTime)),
+                        new SearchResponse(fakeAPI.getName(), fakeAPI.requestTop(x.getText(), responseTime)),
                         self())).build();
     }
 }

@@ -2,13 +2,13 @@ package Search;
 
 import java.util.List;
 
-public class SearchResponder {
+public class SearchResponse {
     private final String apiName;
-    private final List<String> topResponses;
+    private final List<String> responses;
 
-    public SearchResponder(String apiName, List<String> topResponses) {
+    public SearchResponse(String apiName, List<String> responses) {
         this.apiName = apiName;
-        this.topResponses = topResponses;
+        this.responses = responses;
     }
 
     public String getApiName() {
@@ -16,6 +16,6 @@ public class SearchResponder {
     }
 
     public List<String> getResponses() {
-        return topResponses;
+        return responses;
     }
 }
