@@ -1,4 +1,4 @@
-package ru.akirakozov.sd.rxjava.netty_http_server;
+package ermishina.rxjava.netty_http_server;
 
 import io.reactivex.netty.protocol.http.server.HttpServer;
 import rx.Observable;

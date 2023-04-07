@@ -1,4 +1,4 @@
-package ru.akirakozov.sd.rxjava.simple_example;
+package ermishina.rxjava.simple_example;
 
 
 import rx.Observable;

@@ -1,4 +1,4 @@
-package ru.akirakozov.sd.rxjava.reactive_mongo_driver;
+package ermishina.rxjava.reactive_mongo_driver;
 
 import org.bson.Document;
 
