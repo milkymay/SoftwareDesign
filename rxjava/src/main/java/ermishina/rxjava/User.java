@@ -1,4 +1,4 @@
-package ermishina.rxjava.reactive_mongo_driver;
+package ermishina.rxjava;
 
 import org.bson.Document;
 
@@ -8,17 +8,17 @@ import org.bson.Document;
 public class User {
     public final int id;
     public final String name;
-    public final String login;
+    public final String currency;
 
 
     public User(Document doc) {
         this(doc.getDouble("id").intValue(), doc.getString("name"), doc.getString("login"));
     }
 
-    public User(int id, String name, String login) {
+    public User(int id, String name, String currency) {
         this.id = id;
         this.name = name;
-        this.login = login;
+        this.currency = currency;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", login='" + login + '\'' +
+                ", currency='" + currency + '\'' +
                 '}';
     }
 }
