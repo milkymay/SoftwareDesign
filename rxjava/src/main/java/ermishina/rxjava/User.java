@@ -21,6 +21,10 @@ public class User {
         this.currency = currency;
     }
 
+    public Currency getCurrency() {
+        return Currency.getFromString(currency);
+    }
+
     @Override
     public String toString() {
         return "User{" +
